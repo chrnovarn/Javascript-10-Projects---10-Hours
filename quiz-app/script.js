@@ -41,36 +41,37 @@ const quizData = [
     }
 ]
 
-const questionEl = document.getElementById('question');
-const a_text = document.getElementById('a_text');
-const b_text = document.getElementById('b_text');
-const c_text = document.getElementById('c_text');
-const d_text = document.getElementById('d_text');
-const submitButtonEL = document.getElementById('submitBtn');
+let questionEl, quizEl, initalQuizHtml, submitButtonEL;
+let a_text, b_text, c_text, d_text;
+
 let currentQuiz = 0;
 let answer = undefined;
 let score = 0;
+
+initElementsParams();
 loadQuiz();
 
+
 function loadQuiz(){
-    const currentQuizData = quizData[currentQuiz];
+
+    initElementsParams();
+
+    var currentQuizData = quizData[currentQuiz];
     questionEl.innerHTML = currentQuizData.question;
     a_text.innerHTML = currentQuizData.a;
     b_text.innerHTML = currentQuizData.b;
     c_text.innerHTML = currentQuizData.c;
     d_text.innerHTML = currentQuizData.d;
 
-    const answers = document.querySelectorAll('.answer');
+    var answers = document.querySelectorAll('.answer');
     
 }
 function clearQuestion(){
-    const answers = document.querySelectorAll('.answer');
+    var answers = document.querySelectorAll('.answer');
     answers.forEach(answerEl => {
         answerEl.checked = false;
     })
-
 }
-
 function resetQuiz(){
     currentQuiz = 0;
     score = 0;
@@ -90,40 +91,48 @@ function getSelected(){
 
     return answer;
 }
-submitButtonEL.addEventListener("click", () => {
+function initElementsParams(){
+    questionEl = document.getElementById('question');
+    a_text = document.getElementById('a_text');
+    b_text = document.getElementById('b_text');
+    c_text = document.getElementById('c_text');
+    d_text = document.getElementById('d_text');
+    quizEl = document.getElementById('quiz');
+    initalQuizHtml = undefined;
+    submitButtonEL = document.getElementById('submitBtn');
+
+    submitButtonEL.addEventListener("click", () => {
+
+        const answer = getSelected();
     
-
-    const answer = getSelected();
-
-    if(answer)
-    {
-        
-        if(answer === quizData[currentQuiz].correct)
+        if(answer)
         {
-            score++;
-        }
-
-        currentQuiz ++;
-
-        if(currentQuiz < quizData.length)
-        {
-            clearQuestion();
-            loadQuiz();
-        }else{
             
-            alert("You finish! Get yourself an Orange Lemonade<br> Your score is: "+score);
-
-            resetQuiz();
+            if(answer === quizData[currentQuiz].correct)
+            {
+                score++;
+            }
+    
+            currentQuiz ++;
+    
+            if(currentQuiz < quizData.length)
+            {
+                clearQuestion();
+                loadQuiz();
+            }else{
+                initalQuizHtml = quizEl.innerHTML;
+                quizEl.innerHTML =`<h2>
+                You answered correctly ${score}/${quizData.length} questions
+                </h2>
+                <button id="startBtn">Start Again</button>`;
+                let startBtnEL = document.getElementById('startBtn');
+                startBtnEL.addEventListener('click',() => {
+                    quizEl.innerHTML = initalQuizHtml;
+                    resetQuiz();
+                },false)
+    
+                
+            }
         }
-    }
-   
-    
-})
-
-
-
-//summitQuestion(x);
-
-function summitQuestion(x){
-    
+    })
 }

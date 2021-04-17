@@ -26,11 +26,13 @@ body {
 }
 
 .quiz-header{
-    padding: 2rem;
+    padding: 4rem;
 }
 
 h2{
     margin:0;
+    text-align: center;
+    padding: 1rem;
 }
 
 ul{
