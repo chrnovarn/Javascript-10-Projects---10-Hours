@@ -1,15 +1,16 @@
+
 const APIURL = 'https://api.github.com/users/';
 const main = document.querySelector('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
-const ApiToken = "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";
+
 //getUser("chrnovarn");
 
 async function getUser(user){
     const resp = await fetch(
         APIURL+user, 
         {headers: new Headers({
-        'Authorization': ApiToken, 
+        'Authorization': API_token, 
         })}
     );
     const headers = await resp;
@@ -24,7 +25,7 @@ async function getRepos(user){
     const resp = await fetch(
         APIURL+user+"/repos",
         {headers: new Headers({
-            'Authorization': ApiToken, 
+            'Authorization': API_token, 
             })}
     );
     const repos = await resp.json();
