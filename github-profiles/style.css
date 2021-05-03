@@ -19,7 +19,23 @@ body {
 }
 
 input{
+    background-color:  #2a2a72;
+    border-radius: 10px;
+    border: 2px solid #2a2a72;
+    box-shadow: 0 5px 10px rgba(154,160,185,0.05),
+    0 15px 40px rgba(0, 0, 0, 0.1);
+    font-family: inherit;
+    font-size: 1rem;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 2rem;
 
+}
+input::placeholder{
+    color: #bbb;   
+}
+.input:focus{
+    outline:none;
 }
 .card{
     background-color: #1b1ba5;
@@ -30,11 +46,6 @@ input{
     display: flex;
     padding: 3rem;
     max-width: 800px;
-}
-.img-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .avatar{
     border: 10px solid #7c63da;
@@ -57,4 +68,26 @@ input{
     list-style-type: none;
     padding: 0;
     width: 300px;
+
+}
+
+.user-info ul li{
+    display: flex;
+    align-items: center;
+}
+.user-info ul strong{
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.repo {
+    background-color: #2a2a72;
+    border-radius: 5px;
+    display: inline-block;
+    color:white;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
 }
