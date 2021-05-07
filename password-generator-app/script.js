@@ -28,7 +28,25 @@ function getSymbol(){
 function generatePassword(){
     const len = lenEl.value;
     let password = "";
-    for (let i = 0; i < len; i++) {
+
+    if(upperEl.checked){
+        password += getLowercase();
+    }
+
+    if(lowerEl.checked){
+        password += getUppercase();
+    }
+
+    if(numberEl.checked){
+        password += getNumber();
+    }
+
+    if(symbolEl.checked){
+        password += getSymbol();
+    }
+
+
+    for (let i = password.length; i < len; i++) {
         const x = generateX();
         password += x;
     }
@@ -51,8 +69,23 @@ function generateX(){
     if(symbolEl.checked){
         xs.push(getSymbol());
     }
-
-    return xs.length==0 ? "" : xs[Math.floor(Math.random() * xs.length)];
+    
+    return xs.length===0 ? "" : xs[Math.floor(Math.random() * xs.length)];
 }
 
 generateEl.addEventListener("click", generatePassword);
+
+copyEl.addEventListener("click", () => {
+    const textarea = document.createElement("textarea");
+    const password = pwEl.innerHTML;
+
+    if(!password) { return; }
+
+    textarea.value = password;
+
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+    alert("Password copied to clipboard");
+});

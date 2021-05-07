@@ -18,8 +18,7 @@ body {
 .pw-container{
     background-color:  rgb(66, 34, 99);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    max-width: 400px;
-    overflow: auto;
+    min-width: 400px;
 }
 .pw-header{
     
@@ -47,13 +46,13 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(0 , -50%);
+    transform: translate(0 , 20%);
     transition: opacity 0.2s ease, transform 0.2s ease;
     opacity: 0;
 }
 .pw:hover button{
     opacity: 1;
-    transform: translate(0 , -80%);
+    transform: translate(0 , 0);
 }
 .pw-body{
     padding: 0 1rem 1rem; 
